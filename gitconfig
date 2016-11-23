@@ -11,4 +11,6 @@
 [help]
 	autocorrect = 1
 [core]
-	editor = vim
+	editor = nvim
+[interactive]
+	diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFX
