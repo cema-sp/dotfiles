@@ -1,0 +1,14 @@
+[user]
+	name = Semyon Pisarev
+	email = cema.rus@gmail.com
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
+[status]
+	submoduleSummary = true
+[push]
+	default = simple
+[help]
+	autocorrect = 1
+[core]
+	editor = vim

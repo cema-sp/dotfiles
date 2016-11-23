@@ -1,0 +1,5 @@
+COPY_ALWAYS="ssh/id_*"
+EXCLUDES="README.md .rcrc deploy.sh"
+SYMLINK_DIRS="zprezto texmf"
+UNDOTTED="gemrc"
+
