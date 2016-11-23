@@ -9,7 +9,7 @@
 
 4. Install with [rcm]:
 
-  `env RCRC=~/.dotfiles/.rcrc rcup`
+  `env RCRC=~/.dotfiles/rcrc rcup -v`
 
 [laptop script]: https://github.com/cema-sp/laptop "laptop script"
 [rcm]: https://github.com/thoughtbot/rcm "RCM"
