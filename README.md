@@ -5,12 +5,12 @@
 2. Install [rcm] if it is not installed with [laptop script]
 3. Clone this repo to *~/.dotfiles*:
 
-  `git clone https://github.com/cema-sp/dotfiles ~/.dotfiles`
+  `git clone git@github.com:cema-sp/dotfiles "$HOME/.dotfiles"`
 
 4. Install with [rcm]:
 
   ~~~
-  RCRC=~/.dotfiles/rcrc rcup -v`
+  RCRC=$HOME/.dotfiles/rcrc rcup -v`
   ~~~
 
 [laptop script]: https://github.com/cema-sp/laptop "laptop script"
