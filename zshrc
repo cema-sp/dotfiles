@@ -53,7 +53,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew brew-cask docker gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search)
+plugins=(docker gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search)
 
 # User configuration
 
