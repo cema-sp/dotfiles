@@ -1,0 +1,9 @@
+# Vim temporary files
+*.swp
+
+# Ignore init.vim link
+vim/init.vim
+
+# Vim Plugins dir
+vim/bundle/**/*
+
