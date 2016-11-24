@@ -6,4 +6,5 @@ vim/init.vim
 
 # Vim Plugins dir
 vim/bundle/**/*
+!vim/bundle/.gitkeep
 
