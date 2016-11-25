@@ -1,5 +1,5 @@
 COPY_ALWAYS="ssh/id_*"
 EXCLUDES="README.md deploy.sh"
 SYMLINK_DIRS="vim"
-UNDOTTED="gemrc BitBar iTerm Library"
+UNDOTTED="BitBar iTerm Library"
 
