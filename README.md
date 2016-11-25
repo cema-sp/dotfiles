@@ -13,6 +13,14 @@
   RCRC=$HOME/.dotfiles/rcrc rcup -v`
   ~~~
 
+5. Clone [Vundle] and install vim plugins:
+
+  ~~~
+  git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
+  vim +VundleInstall
+  ~~~
+
 [laptop script]: https://github.com/cema-sp/laptop "laptop script"
 [rcm]: https://github.com/thoughtbot/rcm "RCM"
+[Vundle]: https://github.com/VundleVim/Vundle.vim "Vundle"
 
