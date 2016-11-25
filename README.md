@@ -22,7 +22,12 @@
 
 6. Make vim plugins work:
 
-  1. ...
+  1. YouCompleteMe:
+
+    ~~~
+    cd "$HOME/.vim/bundle/YouCompleteMe/"
+    ./install.py --clang-completer --gocode-completer --tern-completer
+    ~~~
 
 7. Make Sublime plugins work:
 

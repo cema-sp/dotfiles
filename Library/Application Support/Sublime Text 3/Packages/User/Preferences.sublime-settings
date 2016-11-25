@@ -16,6 +16,7 @@
 	"ignored_packages":
 	[
 		"Markdown",
+		"SideBarGit",
 		"Vintage"
 	],
 	"index_files": true,
