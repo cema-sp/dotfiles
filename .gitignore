@@ -8,3 +8,23 @@ vim/init.vim
 vim/bundle/**/*
 !vim/bundle/.gitkeep
 
+# Sublime Package control reproducible files
+
+# Package Control.last-run
+# Package Control.ca-list
+# Package Control.ca-bundle
+# Package Control.system-ca-bundle
+# Package Control.merged-ca-bundle
+# Package Control.cache/
+# Package Control.ca-certs/
+#
+# Default*.sublime-keymap
+#
+# GoSublime/**/*
+# ColorPicker/**/*
+#
+# # Sublime Configs with sensitive data
+#
+# MarkdownPreview.sublime-settings
+# oscrypto-ca-bundle.crt
+#

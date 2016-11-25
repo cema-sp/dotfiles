@@ -20,6 +20,19 @@
   vim +VundleInstall
   ~~~
 
+6. Make vim plugins work:
+
+  1. ...
+
+7. Make Sublime plugins work:
+
+  1. Get your GitHub OAuth token [here](https://github.com/settings/tokens)
+    and add following line to *~/Library/Application Support/Sublime Text 3/Packages/User/MarkdownPreview.sublime-settings*:
+
+    `"github_oauth_token": "<YOU TOKEN>"`
+
+  2. ...
+
 [laptop script]: https://github.com/cema-sp/laptop "laptop script"
 [rcm]: https://github.com/thoughtbot/rcm "RCM"
 [Vundle]: https://github.com/VundleVim/Vundle.vim "Vundle"

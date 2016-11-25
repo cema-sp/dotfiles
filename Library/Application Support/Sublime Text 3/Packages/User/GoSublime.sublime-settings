@@ -1,0 +1,6 @@
+{
+  "env": {
+    "GOROOT": "/usr/local/go",
+    "GOPATH": "$HOME/go"
+  }
+}

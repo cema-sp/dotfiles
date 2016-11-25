@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+do
+	${1:$TM_SELECTED_TEXT}
+end
+]]></content>
+	<tabTrigger>doe</tabTrigger>
+	<scope>source.ruby</scope>
+	<description>do ... end</description>
+</snippet>

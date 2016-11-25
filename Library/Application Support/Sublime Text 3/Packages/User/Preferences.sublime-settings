@@ -1,0 +1,36 @@
+{
+	"color_scheme": "Packages/User/SublimeLinter/amCoder (SL).tmTheme",
+	"detect_indentation": true,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		"node_modules/*",
+		"elm-stuff/*",
+		".bundle"
+	],
+	"font_size": 11.5,
+	"hide_minimap": true,
+	"ignored_packages":
+	[
+		"Markdown",
+		"Vintage"
+	],
+	"index_files": true,
+	"rulers":
+	[
+		78
+	],
+	"scroll_past_end": true,
+	"show_encoding": true,
+	"show_line_endings": false,
+	"show_minimap": false,
+	"tab_size": 2,
+	"theme": "Spacegray.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"use_tab_stops": true,
+	"word_wrap": false
+}

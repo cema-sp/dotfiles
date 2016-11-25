@@ -1,0 +1,67 @@
+{
+	"auto_upgrade_ignore":
+	[
+		"SublimeCodeIntel"
+	],
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Advanced CSV",
+		"Alignment",
+		"ApacheConf.tmLanguage",
+		"ApplySyntax",
+		"Babel",
+		"Better CoffeeScript",
+		"C++ Snippets",
+		"C++11",
+		"CMake",
+		"ColorPicker",
+		"Cucumber",
+		"Cucumber Step Finder",
+		"Dockerfile Syntax Highlighting",
+		"EditorConfig",
+		"Elm Language Support",
+		"Emmet",
+		"ERB Snippets",
+		"Ethereum",
+		"FileDiffs",
+		"Flow Built-In Type Completion",
+		"GoSublime",
+		"Handlebars",
+		"Jest",
+		"JSX",
+		"Liquid",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"nginx",
+		"Package Control",
+		"Retro Computers Color Schemes",
+		"RSpec",
+		"Ruby Slim",
+		"Sass",
+		"SCSS",
+		"SFTP",
+		"SideBarEnhancements",
+		"SideBarGit",
+		"SublimeCodeIntel",
+		"SublimeERB",
+		"SublimeHaskell",
+		"SublimeLinter",
+		"SublimeLinter-coffee",
+		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-rubocop",
+		"Theme - amCoder",
+		"Theme - Spaceblack",
+		"Theme - Spacegray",
+		"VimL",
+		"Vintageous",
+		"yardgen"
+	],
+	"repositories":
+	[
+		"https://github.com/SublimeHaskell/SublimeHaskell/tree/hsdev"
+	]
+}
