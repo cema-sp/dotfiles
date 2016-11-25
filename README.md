@@ -13,14 +13,15 @@
   RCRC=$HOME/.dotfiles/rcrc rcup -v`
   ~~~
 
-5. Clone [Vundle] and install vim plugins:
+5. If hooks doesn't work, run them manualy
+6. Clone [Vundle] and install vim plugins:
 
   ~~~
   git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
   vim +VundleInstall
   ~~~
 
-6. Make vim plugins work:
+7. Make vim plugins work:
 
   1. YouCompleteMe:
 
@@ -32,9 +33,8 @@
     gem install neovim
     ~~~
 
-7. Check Neovim health: `vim +CheckHealth`
-
-8. Make Sublime plugins work:
+8. Check Neovim health: `vim +CheckHealth`
+9. Make Sublime plugins work:
 
   1. Get your GitHub OAuth token [here](https://github.com/settings/tokens)
     and add following line to *~/Library/Application Support/Sublime Text 3/Packages/User/MarkdownPreview.sublime-settings*:
