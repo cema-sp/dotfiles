@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export GOPATH=$HOME/go
 
 PATH=$PATH:"/Library/PostgreSQL/9.5/bin"
