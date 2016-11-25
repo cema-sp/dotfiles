@@ -27,16 +27,19 @@
     ~~~
     cd "$HOME/.vim/bundle/YouCompleteMe/"
     ./install.py --clang-completer --gocode-completer --tern-completer
+    pip install --upgrade pip
+    pip install --upgrade neovim
+    gem install neovim
     ~~~
 
-7. Make Sublime plugins work:
+7. Check Neovim health: `vim +CheckHealth`
+
+8. Make Sublime plugins work:
 
   1. Get your GitHub OAuth token [here](https://github.com/settings/tokens)
     and add following line to *~/Library/Application Support/Sublime Text 3/Packages/User/MarkdownPreview.sublime-settings*:
 
     `"github_oauth_token": "<YOU TOKEN>"`
-
-  2. ...
 
 [laptop script]: https://github.com/cema-sp/laptop "laptop script"
 [rcm]: https://github.com/thoughtbot/rcm "RCM"
