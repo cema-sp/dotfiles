@@ -110,4 +110,6 @@ eval "$(rbenv init - --no-rehash)"
 # Initialize direnv
 eval "$(direnv hook zsh)"
 
+# Initialize GutHub hub tool
+eval "$(hub alias -s)"
 

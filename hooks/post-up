@@ -17,3 +17,6 @@ function link {
 link "$HOME/.vim" "$HOME/.config/nvim"
 link "$HOME/.vimrc" "$HOME/.vim/init.vim"
 
+link $HOME"/.sublime" \
+     $HOME"/Library/Application\ Support/Sublime\ Text\ 3/Packages/User"
+
