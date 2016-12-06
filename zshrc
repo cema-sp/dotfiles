@@ -1,4 +1,5 @@
-KEYTIMEOUT=1
+set b off # disable beep
+export KEYTIMEOUT=1
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/cema-sp/.oh-my-zsh
@@ -102,6 +103,7 @@ unsetopt share_history
 
 alias vim='nvim'
 
+# iTerm2 shell integration
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 # Initialize rbenv
@@ -112,4 +114,7 @@ eval "$(direnv hook zsh)"
 
 # Initialize GutHub hub tool
 eval "$(hub alias -s)"
+
+# Initialize fzf fuzzy search
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

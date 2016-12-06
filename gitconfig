@@ -1,18 +1,21 @@
-[user]
-	name = Semyon Pisarev
-	email = cema.rus@gmail.com
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[core]
+	editor = nvim
+[help]
+	autocorrect = 1
+[github]
+  user = cema-sp
+[interactive]
+	diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFX
 [pager]
 	diff = diff-so-fancy | less --tabs=1,5 -RFX
 	show = diff-so-fancy | less --tabs=1,5 -RFX
-[status]
-	submoduleSummary = true
 [push]
 	default = simple
-[help]
-	autocorrect = 1
-[core]
-	editor = nvim
-[interactive]
-	diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFX
-[alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[status]
+	submoduleSummary = true
+[user]
+	name = Semyon Pisarev
+	email = cema.rus@gmail.com
+

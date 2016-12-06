@@ -40,7 +40,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " Status bar
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Fuzzy files search
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -71,7 +72,7 @@ Plugin 'JamshedVesuna/vim-markdown-preview'
 " Execution
 Plugin 'Shougo/vimproc.vim', { 'do': 'make' }
 
-" Whitespaces
+" Trailing whitespaces highlighting
 Plugin 'ntpeters/vim-better-whitespace'
 
 " Aligning
@@ -107,11 +108,18 @@ filetype plugin on
 syntax enable
 set background=dark
 colorscheme monokai
+
+" Encodings
+set langmenu=en_US.UTF-8
+set encoding=utf-8
+set fileencoding=utf-8
+
 " Tabs & Spaces
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab       " tabs are spaces
+
 " UI
 set number
 set relativenumber
@@ -131,8 +139,9 @@ set hlsearch            " highlight matches
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
+set foldmethod=syntax
 " space open/closes folds
-" nnoremap <space> za
+nnoremap <space> za
 
 " Movement
 "   Learn Keys
@@ -185,6 +194,8 @@ set completeopt+=longest
 " Autostart NERDTree
 " autocmd vimenter * NERDTree
 map <Leader>t :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$', '\.tags$', 'tags$', 'tags.lock$', '\.jar$', '^\.bzr$', '^\.hg$', '^\.git$', '\.swp$', '^\.svn', '^\.DS_Store$']
+let NERDTreeShowHidden = 1
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
@@ -225,6 +236,11 @@ nnoremap <leader>ue :UltiSnipsEdit<cr>
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+" Airline config
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='distinguished'
+let g:airline_powerline_fonts = 1
 
 " Ack & Ag search
 if executable('ag')
