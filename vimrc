@@ -1,4 +1,10 @@
-set nocompatible              " be iMproved, required
+set encoding=utf-8
+scriptencoding utf-8
+
+if &compatible
+  set nocompatible " be iMproved, required
+endif
+
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -16,8 +22,6 @@ set clipboard=unnamedplus
 set pastetoggle=<F2>
 
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -40,8 +44,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " Status bar
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
+Plugin 'taohex/lightline-buffer'
 
 " Fuzzy files search
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -124,6 +128,14 @@ set expandtab       " tabs are spaces
 set number
 set relativenumber
 set showcmd
+
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
+
 set cursorline          " highlight current line
 filetype indent on      " load filetype-specific indent files
 filetype plugin indent on      " load filetype-specific indent files
@@ -132,9 +144,11 @@ set smartindent
 set cindent
 set wildmenu            " visual autocomplete for command menu
 set showmatch           " highlight matching [{()}]
+
 " Searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
+
 " Folding
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
@@ -142,6 +156,9 @@ set foldnestmax=10      " 10 nested fold max
 set foldmethod=syntax
 " space open/closes folds
 nnoremap <space> za
+
+" Misc
+set autoread            " Reload file if changed
 
 " Movement
 "   Learn Keys
@@ -153,6 +170,9 @@ map <up> <NOP>
 map <down> <NOP>
 map <left> <NOP>
 map <right> <NOP>
+
+nnoremap <Left> :bprev<CR>
+nnoremap <Right> :bnext<CR>
 
 "   Other
 " move vertically by visual line
@@ -237,10 +257,39 @@ let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
-" Airline config
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='distinguished'
-let g:airline_powerline_fonts = 1
+" Lightline config
+set noshowmode
+set showtabline=2
+
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'tabline': {
+      \   'left': [ [ 'bufferinfo' ], [ 'bufferbefore' , 'buffercurrent' , 'bufferafter' ] ],
+      \   'right': [ [ 'close' ] ],
+      \ },
+      \ 'tab': {
+      \   'active': [ 'filename', 'modified' ],
+      \   'inactive': [ 'filename', 'modified' ]
+      \ },
+      \ 'tabline_separator': { 'left': '', 'right': '|' },
+      \ 'tabline_subseparator': { 'left': '-', 'right': '+' },
+      \ 'component_expand': {
+      \   'buffercurrent': 'lightline#buffer#buffercurrent2',
+      \ },
+      \ 'component_function': {
+      \   'bufferbefore': 'lightline#buffer#bufferbefore',
+      \   'bufferafter': 'lightline#buffer#bufferafter',
+      \   'bufferinfo': 'lightline#buffer#bufferinfo',
+      \ },
+      \ 'component_type': {
+      \   'buffercurrent': 'tabsel',
+      \ },
+      \ }
+
+let g:lightline_buffer_show_bufnr = 1
+let g:lightline_buffer_separator_icon = ''
+let g:lightline_buffer_active_buffer_left_icon = ''
+let g:lightline_buffer_active_buffer_right_icon = ''
 
 " Ack & Ag search
 if executable('ag')
