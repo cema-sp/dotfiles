@@ -5,106 +5,91 @@ if &compatible
   set nocompatible " be iMproved, required
 endif
 
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-
-" set python path for nvim
-" let g:python_host_prog='/usr/bin/python'
-
-" set shell=/bin/bash
-
 " Clipboard
 set clipboard=unnamedplus
 " To copy with cmd+c in vim:
 " set clipboard=unnamed,autoselect
 set pastetoggle=<F2>
 
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Solarized colorscheme
 " Plugin 'altercation/vim-colors-solarized'
 
 " Monokai colorscheme
-Plugin 'crusoexia/vim-monokai'
+Plug 'crusoexia/vim-monokai'
 
 " Nerd Tree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Autocomplete & completion
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
-Plugin 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+Plug 'ervandew/supertab'
 
 " Snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Status bar
-Plugin 'itchyny/lightline.vim'
-Plugin 'taohex/lightline-buffer'
+Plug 'itchyny/lightline.vim'
+Plug 'taohex/lightline-buffer'
 
 " Fuzzy files search
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
 
 " Comments
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " Syntax checker
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Git
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
 " Surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Motions
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 " Markdown
-Plugin 'plasticboy/vim-markdown'
-Plugin 'JamshedVesuna/vim-markdown-preview'
+Plug 'plasticboy/vim-markdown'
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 " Execution
-Plugin 'Shougo/vimproc.vim', { 'do': 'make' }
+" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 " Trailing whitespaces highlighting
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Aligning
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 " JavaScript
-Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " Haskell
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
 
 " Clojure
 " See: http://blog.venanti.us/clojure-vim/
-Plugin 'guns/vim-clojure-static' " Runtime files
-Plugin 'tpope/vim-fireplace' " REPL
-Plugin 'kien/rainbow_parentheses.vim' " Awesome parantheses
-Plugin 'guns/vim-clojure-highlight' " Awesome highlighting
+Plug 'guns/vim-clojure-static' " Runtime files
+Plug 'tpope/vim-fireplace' " REPL
+Plug 'kien/rainbow_parentheses.vim' " Awesome parantheses
+Plug 'guns/vim-clojure-highlight' " Awesome highlighting
 
 " Solidity
-Plugin 'tomlion/vim-solidity'
+Plug 'tomlion/vim-solidity'
 
 " Elm
-Plugin 'lambdatoast/elm.vim'
+Plug 'lambdatoast/elm.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin on
+call plug#end()
 
 " See: http://dougblack.io/words/a-good-vimrc.html
 

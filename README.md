@@ -14,27 +14,35 @@
   ~~~
 
 5. If hooks doesn't work, run them manualy
-6. Clone [Vundle] and install vim plugins:
+6. Install neovim packages:
 
   ~~~
-  git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
-  vim +VundleInstall
+  pip install --upgrade pip
+  pip install --upgrade pip3
+  pip install --upgrade neovim
+  pip3 install --upgrade neovim
+  gem install neovim
   ~~~
 
-7. Make vim plugins work:
+7. Download [vim-plug] (if not installed by [laptop script]):
 
-  1. YouCompleteMe:
+  * For **vim**
 
     ~~~
-    cd "$HOME/.vim/bundle/YouCompleteMe/"
-    ./install.py --clang-completer --gocode-completer --tern-completer
-    pip install --upgrade pip
-    pip install --upgrade neovim
-    gem install neovim
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ~~~
 
-8. Check Neovim health: `vim +CheckHealth`
-9. Make Sublime plugins work:
+  * For **neovim**
+
+    ~~~
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ~~~
+
+8. Install vim plugins: `vim +PlugInstall`
+9. Check Neovim health: `vim +CheckHealth`
+10. Make Sublime plugins work:
 
   1. Get your GitHub OAuth token [here](https://github.com/settings/tokens)
     and add following line to *~/Library/Application Support/Sublime Text 3/Packages/User/MarkdownPreview.sublime-settings*:
@@ -43,5 +51,5 @@
 
 [laptop script]: https://github.com/cema-sp/laptop "laptop script"
 [rcm]: https://github.com/thoughtbot/rcm "RCM"
-[Vundle]: https://github.com/VundleVim/Vundle.vim "Vundle"
+[vim-plug]: https://github.com/junegunn/vim-plug "vim-plug"
 

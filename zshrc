@@ -59,7 +59,7 @@ plugins=(docker gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search)
 # User configuration
 
 PATH="/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/go/bin"
-PATH=$PATH:"/usr/local/opt/"
+PATH=$PATH:"/usr/local/opt"
 PATH=$PATH:"/usr/local/opt/llvm/bin"
 PATH=$PATH:"$HOME/.cabal/bin"
 PATH=$PATH:"$HOME/.local/bin"

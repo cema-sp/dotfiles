@@ -4,9 +4,8 @@
 # Ignore init.vim link
 vim/init.vim
 
-# Vim Plugins dir
-vim/bundle/**/*
-!vim/bundle/.gitkeep
+# Vim-plug file
+vim/autoload/plug.vim
 
 # Sublime Package control reproducible files
 
