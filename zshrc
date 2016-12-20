@@ -116,5 +116,6 @@ eval "$(direnv hook zsh)"
 eval "$(hub alias -s)"
 
 # Initialize fzf fuzzy search
+export FZF_DEFAULT_COMMAND='ag -g "" --hidden --ignore .git --ignore node_modules'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

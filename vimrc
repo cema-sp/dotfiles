@@ -35,8 +35,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'taohex/lightline-buffer'
 
 " Fuzzy files search
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 " Comments
 Plug 'scrooloose/nerdcommenter'
@@ -57,7 +58,7 @@ Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 
 " Markdown
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
 
 " Execution
@@ -69,7 +70,12 @@ Plug 'ntpeters/vim-better-whitespace'
 " Aligning
 Plug 'godlygeek/tabular'
 
+" Language Packs
+Plug 'sheerun/vim-polyglot'
+
 " JavaScript
+" Plug 'pangloss/vim-javascript'
+Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " Haskell
@@ -78,16 +84,16 @@ Plug 'eagletmt/neco-ghc'
 
 " Clojure
 " See: http://blog.venanti.us/clojure-vim/
-Plug 'guns/vim-clojure-static' " Runtime files
-Plug 'tpope/vim-fireplace' " REPL
+" Plug 'guns/vim-clojure-static' " Runtime files
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'kien/rainbow_parentheses.vim' " Awesome parantheses
-Plug 'guns/vim-clojure-highlight' " Awesome highlighting
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
 " Solidity
-Plug 'tomlion/vim-solidity'
+" Plug 'tomlion/vim-solidity'
 
 " Elm
-Plug 'lambdatoast/elm.vim'
+" Plug 'lambdatoast/elm.vim'
 
 call plug#end()
 
@@ -140,10 +146,30 @@ set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=syntax
 " space open/closes folds
-nnoremap <space> za
+" inoremap <Space> za
 
 " Misc
 set autoread            " Reload file if changed
+set lazyredraw          " Improve performance
+
+" Highlighting
+" Make spelling problems easier to read.
+highlight clear SpellBad
+highlight clear SpellCap
+highlight clear SpellLocal
+highlight clear SpellRare
+
+highlight SpellBad cterm=underline
+highlight SpellCap cterm=underline
+highlight SpellLocal cterm=underline
+highlight SpellRare cterm=underline
+
+" Stop the cross hair ruining highlighting.
+highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
+
+" Make conceal look better.
+highlight Conceal cterm=bold ctermbg=NONE ctermfg=67
 
 " Movement
 "   Learn Keys
@@ -175,6 +201,11 @@ nnoremap gV `[v`]
 nmap <Leader><CR> :nohlsearch<CR>
 " ESCape insert mode with jj
 inoremap jj <ESC>
+inoremap kk <ESC>
+inoremap jk <ESC>
+
+" Invoke fzf with Ctrl+P
+nnoremap <C-p> :Files<CR>
 
 set keymap=russian-jcukenwin
 set iminsert=0
@@ -202,8 +233,16 @@ map <Leader>t :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.tags$', 'tags$', 'tags.lock$', '\.jar$', '^\.bzr$', '^\.hg$', '^\.git$', '\.swp$', '^\.svn', '^\.DS_Store$']
 let NERDTreeShowHidden = 1
 
-" CtrlP
-let g:ctrlp_show_hidden = 1
+" Easymotion
+map <C-s> <Plug>(easymotion-prefix)
+
+" line movements
+map <C-s>l <Plug>(easymotion-bd-jk)
+nmap <C-s>l <Plug>(easymotion-overwin-line)
+
+" word movements
+map <C-s>/ <Plug>(easymotion-sn)
+omap <C-s>/ <Plug>(easymotion-tn)
 
 " Snippets & Completions
 let g:ycm_dont_warn_on_startup = 0
@@ -312,7 +351,7 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Syntastic
-map <Leader>s :SyntasticToggleMode<CR>
+" map <Leader>s :SyntasticToggleMode<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -321,6 +360,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+" JavaScript
+let g:javascript_plugin_flow = 1
 
 " GHC-mod
 map <silent> tw :GhcModTypeInsert<CR>
