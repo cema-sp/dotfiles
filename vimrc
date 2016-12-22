@@ -121,7 +121,7 @@ set relativenumber
 set showcmd
 
 if !&scrolloff
-  set scrolloff=1
+  set scrolloff=2
 endif
 if !&sidescrolloff
   set sidescrolloff=5
@@ -139,6 +139,7 @@ set showmatch           " highlight matching [{()}]
 " Searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
+set ignorecase smartcase " make searches case-sensitive only if they contain upper-case characters
 
 " Folding
 set foldenable          " enable folding
@@ -182,23 +183,34 @@ map <down> <NOP>
 map <left> <NOP>
 map <right> <NOP>
 
+" Swith buffers
 nnoremap <Left> :bprev<CR>
 nnoremap <Right> :bnext<CR>
 
-"   Other
-" move vertically by visual line
+" Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
-" move to beginning/end of line
+
+" Move to beginning/end of line
 nnoremap BB ^
 nnoremap EE $
+
 " $/^ doesn't do anything
 " nnoremap $ <nop>
 " nnoremap ^ <nop>
-" highlight last inserted text
+
+" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Highlight last inserted text
 nnoremap gV `[v`]
-" remove highlight with Leader + CR
+
+" Remove highlight with Leader + CR
 nmap <Leader><CR> :nohlsearch<CR>
+
 " ESCape insert mode with jj
 inoremap jj <ESC>
 inoremap kk <ESC>

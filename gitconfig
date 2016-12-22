@@ -12,10 +12,20 @@
 	diff = diff-so-fancy | less --tabs=1,5 -RFX
 	show = diff-so-fancy | less --tabs=1,5 -RFX
 [push]
-	default = simple
+	default = current
 [status]
 	submoduleSummary = true
 [user]
 	name = Semyon Pisarev
 	email = cema.rus@gmail.com
 
+[diff]
+	tool = vimdiff
+	conflictstyle = diff3
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[difftool]
+	prompt = false
