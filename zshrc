@@ -83,6 +83,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 
+# Have Haskell Stack use XDG Base Directory spec
+export STACK_ROOT="$XDG_DATA_HOME/stack"
+
 # You may need to manually set your language environment
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8

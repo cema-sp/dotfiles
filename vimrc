@@ -82,8 +82,8 @@ Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " Haskell
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 
 " Clojure
 " See: http://blog.venanti.us/clojure-vim/
@@ -104,6 +104,7 @@ call plug#end()
 
 " Colors
 syntax enable
+set t_Co=256
 set background=dark
 colorscheme monokai
 
