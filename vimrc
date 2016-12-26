@@ -243,7 +243,7 @@ set completeopt+=longest
 " Use XDG directories (don't forget to create them)
 set directory=$XDG_CACHE_HOME/vim/swap,~/tmp,/tmp
 set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
-set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+" set shada+=n$XDG_CACHE_HOME/vim/viminfo
 set undodir=$XDG_CACHE_HOME/vim/undo,~/tmp,/tmp
 
 " ---------------- Plugins configuration ---------------------
