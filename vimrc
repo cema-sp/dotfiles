@@ -73,6 +73,9 @@ Plug 'godlygeek/tabular'
 " Language Packs
 Plug 'sheerun/vim-polyglot'
 
+" HTML
+Plug 'mattn/emmet-vim'
+
 " JavaScript
 " Plug 'pangloss/vim-javascript'
 Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
@@ -343,6 +346,11 @@ endif
 " autocmd FileType javascript,html,ruby autocmd BufWritePre <buffer> StripWhitespace
 autocmd BufWritePre *.rb,*.js,*.jsx,*.html,*.css,*.sass StripWhitespace
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help','markdown']
+
+" Emmet
+let g:user_emmet_mode = 'in'
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css,eruby EmmetInstall
 
 " Tabular
 let g:haskell_tabular = 1
