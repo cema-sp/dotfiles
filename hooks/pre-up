@@ -1,4 +1,11 @@
+# vim: ft=sh
+
 mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User"
 mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User/SideBarEnhancements/Open With"
 mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter"
+
+# Create XDG directories
+mkdir -p "$XDG_CACHE_HOME/vim/undo"
+mkdir -p "$XDG_CACHE_HOME/vim/swap"
+mkdir -p "$XDG_CACHE_HOME/vim/backup"
 

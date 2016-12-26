@@ -76,6 +76,13 @@ export GOPATH=$HOME/go
 
 source $ZSH/oh-my-zsh.sh
 
+# Respect XDG Directories
+# see https://wiki.archlinux.org/index.php/XDG_Base_Directory_support
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+
 # You may need to manually set your language environment
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
