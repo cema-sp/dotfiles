@@ -1,5 +1,6 @@
 # Vim temporary files
 *.swp
+vim/.netrwhist
 
 # Ignore init.vim link
 vim/init.vim

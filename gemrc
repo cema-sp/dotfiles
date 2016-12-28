@@ -1,1 +1,5 @@
+---
+:verbose: true
+:update_sources: true
 gem: --no-ri --no-rdoc
+

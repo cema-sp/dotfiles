@@ -45,6 +45,9 @@ Plug 'scrooloose/nerdcommenter'
 " Syntax checker
 Plug 'scrooloose/syntastic'
 
+" Guides
+Plug 'nathanaelkane/vim-indent-guides'
+
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -103,10 +106,13 @@ call plug#end()
 " See: http://dougblack.io/words/a-good-vimrc.html
 
 " Colors
-syntax enable
+" syntax enable " do not override colors
+syntax on " override colors
 set t_Co=256
-set background=dark
+let g:rehash256 = 1
 colorscheme monokai
+set background=dark
+" let g:molokai_original = 1
 
 " Encodings
 set langmenu=en_US.UTF-8
@@ -144,6 +150,8 @@ set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 set ignorecase smartcase " make searches case-sensitive only if they contain upper-case characters
+nmap * *N
+nmap # #n
 
 " Folding
 set foldenable          " enable folding
@@ -156,6 +164,13 @@ set foldmethod=syntax
 " Misc
 set autoread            " Reload file if changed
 set lazyredraw          " Improve performance
+
+set formatoptions-=o    " do not insert comment on 'o' & 'O'
+set formatoptions+=w    " space on end indicates paragraph break
+set formatoptions+=2    " indent as second line
+
+set history=100
+set noerrorbells
 
 " Highlighting
 " Make spelling problems easier to read.
@@ -170,11 +185,15 @@ highlight SpellLocal cterm=underline
 highlight SpellRare cterm=underline
 
 " Stop the cross hair ruining highlighting.
-highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
-highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
+" highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
+" highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
 
 " Make conceal look better.
 highlight Conceal cterm=bold ctermbg=NONE ctermfg=67
+
+" Configure Indent Guides highlighting
+highlight IndentGuidesOdd cterm=NONE ctermbg=234 ctermfg=NONE guibg=bg guifg=NONE
+highlight IndentGuidesEven cterm=NONE ctermbg=235 ctermfg=NONE guibg=293739 guifg=NONE
 
 " Movement
 "   Learn Keys
@@ -194,6 +213,15 @@ nnoremap <Right> :bnext<CR>
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+" Faster split resizing (+,-)
+if bufwinnr(1)
+  nmap + <C-W>+
+  nmap - <C-W>-
+endif
+
+" Sudo write (,W)
+noremap <leader>W :w !sudo tee %<CR>
 
 " Move to beginning/end of line
 nnoremap BB ^
@@ -215,6 +243,10 @@ nnoremap gV `[v`]
 " Remove highlight with Leader + CR
 nmap <Leader><CR> :nohlsearch<CR>
 
+" Duplicate lines
+vmap D y'>p
+nmap D YP
+
 " ESCape insert mode with jj
 inoremap jj <ESC>
 inoremap kk <ESC>
@@ -230,8 +262,8 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 setlocal spell spelllang=ru_yo,en_us
 
-" Enable mouse
-" set mouse=a
+" Enable mouse for all modes except insert
+set mouse=nvc
 
 " Nice autocomplete menus
 set completeopt=menuone,menu,longest
@@ -245,6 +277,16 @@ set directory=$XDG_CACHE_HOME/vim/swap,~/tmp,/tmp
 set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
 " set shada+=n$XDG_CACHE_HOME/vim/viminfo
 set undodir=$XDG_CACHE_HOME/vim/undo,~/tmp,/tmp
+
+" ---------------- Custom commands  --------------------------
+
+if !exists(':FilePath')
+  command FilePath :let @+ = expand("%")
+endif
+
+if !exists(':FilePathAbs')
+  command FilePathAbs :let @+ = expand("%:p")
+endif
 
 " ---------------- Plugins configuration ---------------------
 
@@ -378,18 +420,26 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Syntastic
-" map <Leader>s :SyntasticToggleMode<CR>
+map <Leader>s :SyntasticToggleMode<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+
+let g:syntastic_javascript_checkers = ['eslint', 'flow']
 
 " JavaScript
 let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 0
+
+" Flow
+let g:flow#autoclose = 1
 
 " GHC-mod
 map <silent> tw :GhcModTypeInsert<CR>
