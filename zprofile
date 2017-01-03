@@ -12,4 +12,5 @@ export LANG=en_US.UTF-8
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 alias vim='nvim'
+alias ag='ag --nogroup'
 

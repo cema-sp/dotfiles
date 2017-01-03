@@ -29,3 +29,5 @@
 	prompt = false
 [difftool]
 	prompt = false
+[web]
+	browser = open

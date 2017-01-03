@@ -54,6 +54,9 @@ Plug 'tpope/vim-fugitive'
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 
+" Smooth motion
+Plug 'yuttie/comfortable-motion.vim'
+
 " Surround
 Plug 'tpope/vim-surround'
 
@@ -106,12 +109,15 @@ call plug#end()
 " See: http://dougblack.io/words/a-good-vimrc.html
 
 " Colors
-" syntax enable " do not override colors
-syntax on " override colors
-set t_Co=256
-let g:rehash256 = 1
+" syntax enable " do not override theme colors
+syntax on     " override theme colors
 colorscheme monokai
-set background=dark
+set t_Co=256
+let g:monokai_term_italic = 1
+
+" For molokai theme
+" set background=dark
+" let g:rehash256 = 1
 " let g:molokai_original = 1
 
 " Encodings
@@ -137,6 +143,7 @@ if !&sidescrolloff
   set sidescrolloff=5
 endif
 
+set colorcolumn=80      " show lines limit
 set cursorline          " highlight current line
 filetype indent on      " load filetype-specific indent files
 filetype plugin indent on      " load filetype-specific indent files
@@ -183,6 +190,8 @@ highlight SpellBad cterm=underline
 highlight SpellCap cterm=underline
 highlight SpellLocal cterm=underline
 highlight SpellRare cterm=underline
+
+highlight ColorColumn ctermbg=235
 
 " Stop the cross hair ruining highlighting.
 " highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
@@ -392,8 +401,8 @@ let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf',
 
 " Emmet
 let g:user_emmet_mode = 'in'
-" let g:user_emmet_install_global = 0
-" autocmd FileType html,css,eruby EmmetInstall
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,eruby EmmetInstall
 
 " Tabular
 let g:haskell_tabular = 1
@@ -431,6 +440,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
+
+let g:syntastic_mode_map = { "mode": "passive" }
 
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 

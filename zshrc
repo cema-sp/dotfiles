@@ -76,6 +76,10 @@ export GOPATH=$HOME/go
 
 source $ZSH/oh-my-zsh.sh
 
+# Improve less pager output
+export LESS="-R"
+[[ -f ~/.less ]] && . ~/.less
+
 # Respect XDG Directories
 # see https://wiki.archlinux.org/index.php/XDG_Base_Directory_support
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -112,6 +116,27 @@ unsetopt share_history
 # For a full list of active aliases, run `alias`.
 
 alias vim='nvim'
+alias ag='ag --nogroup'
+
+# Open iTerm2 split & vim file in
+function vimtab() {
+  echo "Open $1 if vim!"
+  file=$1
+  line=$2
+
+  osascript 2>/dev/null <<EOF
+    tell application "iTerm"
+      tell current session of current window
+        local vimSession
+        set vimSession to split vertically with same profile command "vim $1 +$2"
+
+        tell vimSession
+          select
+        end tell
+      end tell
+   end tell
+EOF
+}
 
 # iTerm2 shell integration
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
