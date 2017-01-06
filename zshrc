@@ -61,9 +61,9 @@ plugins=(docker gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search)
 PATH="/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/go/bin"
 PATH=$PATH:"/usr/local/opt"
 PATH=$PATH:"/usr/local/opt/llvm/bin"
+PATH=$PATH:"$HOME/.gitbins"
 PATH=$PATH:"$HOME/.cabal/bin"
-PATH=$PATH:"$HOME/.local/bin"
-PATH=$PATH:"/Library/PostgreSQL/9.5/bin" # todo: remove
+PATH=$PATH:"$HOME/.local/bin" # for haskell binaries
 export PATH
 
 # From laptop config script:
@@ -105,10 +105,7 @@ fi
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# unsetopt inc_append_history
-unsetopt share_history
+# export SSH_KEY_PATH="~/.ssh/dsa_id
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -118,25 +115,12 @@ unsetopt share_history
 alias vim='nvim'
 alias ag='ag --nogroup'
 
-# Open iTerm2 split & vim file in
-function vimtab() {
-  echo "Open $1 if vim!"
-  file=$1
-  line=$2
-
-  osascript 2>/dev/null <<EOF
-    tell application "iTerm"
-      tell current session of current window
-        local vimSession
-        set vimSession to split vertically with same profile command "vim $1 +$2"
-
-        tell vimSession
-          select
-        end tell
-      end tell
-   end tell
-EOF
-}
+# File Download
+if (( $+commands[curl] )); then
+  alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
+elif (( $+commands[wget] )); then
+  alias get='wget --continue --progress=bar --timestamping'
+fi
 
 # iTerm2 shell integration
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

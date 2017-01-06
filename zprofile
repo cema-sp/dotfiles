@@ -2,8 +2,8 @@
 
 export GOPATH=$HOME/go
 
-PATH=$PATH:"/Library/PostgreSQL/9.5/bin"
 PATH=$PATH:"$HOME/.local/bin:/opt/local/bin"
+PATH=$PATH:"$HOME/.gitbins"
 export PATH
 
 export LC_ALL=en_US.UTF-8
