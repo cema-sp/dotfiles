@@ -48,8 +48,9 @@ Plug 'scrooloose/syntastic'
 " Guides
 Plug 'nathanaelkane/vim-indent-guides'
 
-" Git
+" Git & Gist
 Plug 'tpope/vim-fugitive'
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -171,10 +172,15 @@ set foldmethod=syntax
 " Misc
 set autoread            " Reload file if changed
 set lazyredraw          " Improve performance
+set hidden              " allow to swith unsaved buffers
 
-set formatoptions-=o    " do not insert comment on 'o' & 'O'
-set formatoptions+=w    " space on end indicates paragraph break
-set formatoptions+=2    " indent as second line
+" set formatoptions-=o    " do not insert comment on 'o' & 'O'
+" set formatoptions+=w    " space on end indicates paragraph break
+" set formatoptions+=2    " indent as second line
+augroup format_options
+  autocmd!
+  autocmd FileType * setlocal fo-=o fo+=w fo+=2
+augroup END
 
 set history=100
 set noerrorbells
@@ -247,7 +253,8 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Highlight last inserted text
-nnoremap gV `[v`]
+" nnoremap gV `[v`]
+nnoremap <expr> gV '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Remove highlight with Leader + CR
 nmap <Leader><CR> :nohlsearch<CR>
@@ -260,6 +267,10 @@ nmap D YP
 inoremap jj <ESC>
 inoremap kk <ESC>
 inoremap jk <ESC>
+
+" Close buffer with Q
+nnoremap Q :bd<CR>
+" nnoremap <C-q> :bd<CR>
 
 " Invoke fzf with Ctrl+P
 nnoremap <C-p> :Files<CR>

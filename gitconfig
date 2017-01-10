@@ -1,5 +1,6 @@
 [alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lg = log --graph --pretty=custom --abbrev-commit --date=relative
+  rewrite = rewrite-history
 [core]
 	editor = nvim
 [help]
@@ -11,8 +12,16 @@
 [pager]
 	diff = diff-so-fancy | less --tabs=1,5 -RFX
 	show = diff-so-fancy | less --tabs=1,5 -RFX
+[pretty]
+  custom = "%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
+  #               |                    |         |          |                   \_ author name
+  #               |                    |         |          \_ time ago
+  #               |                    |         \_ message
+  #               |                    \_ decorations (branch, heads or tags)
+  #               \_ hash
 [push]
 	default = current
+  followTags = true
 [status]
 	submoduleSummary = true
 [user]
