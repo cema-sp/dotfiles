@@ -54,7 +54,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search)
+plugins=(docker gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search zsh-nvm)
 
 # User configuration
 
@@ -63,6 +63,7 @@ PATH=$PATH:"/usr/local/opt"
 PATH=$PATH:"/usr/local/opt/llvm/bin"
 PATH=$PATH:"$HOME/.gitbins"
 PATH=$PATH:"$HOME/.cabal/bin"
+PATH=$PATH:"$HOME/.cargo/bin"
 PATH=$PATH:"$HOME/.local/bin" # for haskell binaries
 export PATH
 
@@ -106,21 +107,6 @@ fi
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-alias vim='nvim'
-alias ag='ag --nogroup'
-
-# File Download
-if (( $+commands[curl] )); then
-  alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
-elif (( $+commands[wget] )); then
-  alias get='wget --continue --progress=bar --timestamping'
-fi
 
 # iTerm2 shell integration
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

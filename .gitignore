@@ -8,6 +8,9 @@ vim/init.vim
 # Vim-plug file
 vim/autoload/plug.vim
 
+# Oh-my-zsh plugins dir
+oh-my-zsh/custom/plugins
+
 # Sublime Package control reproducible files
 
 # Package Control.last-run

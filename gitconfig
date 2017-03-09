@@ -40,3 +40,5 @@
 	prompt = false
 [web]
 	browser = open
+[color]
+	diff = auto

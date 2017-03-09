@@ -6,9 +6,13 @@ if &compatible
 endif
 
 " Clipboard
-set clipboard=unnamedplus
-" To copy with cmd+c in vim:
-" set clipboard=unnamed,autoselect
+set clipboard=unnamed
+if has("unnamedplus")
+  set clipboard+=unnamedplus
+  " To copy with cmd+c in vim:
+  " set clipboard+=autoselect
+end
+
 set pastetoggle=<F2>
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -105,6 +109,9 @@ Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 " Elm
 " Plug 'lambdatoast/elm.vim'
 
+" Spelling
+Plug 'reedes/vim-wordy'
+
 call plug#end()
 
 " See: http://dougblack.io/words/a-good-vimrc.html
@@ -123,8 +130,8 @@ let g:monokai_term_italic = 1
 
 " Encodings
 set langmenu=en_US.UTF-8
-set encoding=utf-8
-set fileencoding=utf-8
+set encoding=utf-8 nobomb
+set fileencoding=utf-8 nobomb
 
 " Tabs & Spaces
 set tabstop=2
@@ -144,10 +151,10 @@ if !&sidescrolloff
   set sidescrolloff=5
 endif
 
-set colorcolumn=80      " show lines limit
-set cursorline          " highlight current line
-filetype indent on      " load filetype-specific indent files
-filetype plugin indent on      " load filetype-specific indent files
+setlocal linebreak
+set colorcolumn=80        " show lines limit
+set cursorline            " highlight current line
+filetype plugin indent on " load filetype-specific indent files
 set autoindent
 set smartindent
 set cindent
@@ -159,7 +166,7 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 set ignorecase smartcase " make searches case-sensitive only if they contain upper-case characters
 nmap * *N
-nmap # #n
+nmap # #N
 
 " Folding
 set foldenable          " enable folding
@@ -170,7 +177,6 @@ set foldmethod=syntax
 " inoremap <Space> za
 
 " Misc
-set autoread            " Reload file if changed
 set lazyredraw          " Improve performance
 set hidden              " allow to swith unsaved buffers
 
@@ -182,7 +188,7 @@ augroup format_options
   autocmd FileType * setlocal fo-=o fo+=w fo+=2
 augroup END
 
-set history=100
+set history=500
 set noerrorbells
 
 " Highlighting
@@ -210,7 +216,9 @@ highlight Conceal cterm=bold ctermbg=NONE ctermfg=67
 highlight IndentGuidesOdd cterm=NONE ctermbg=234 ctermfg=NONE guibg=bg guifg=NONE
 highlight IndentGuidesEven cterm=NONE ctermbg=235 ctermfg=NONE guibg=293739 guifg=NONE
 
-" Movement
+" Keys
+let g:mapleader = "\<Space>"
+
 "   Learn Keys
 imap <up> <NOP>
 imap <down> <NOP>
@@ -236,7 +244,16 @@ if bufwinnr(1)
 endif
 
 " Sudo write (,W)
-noremap <leader>W :w !sudo tee %<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>W :w !sudo tee %<CR>
+
+" Refresh
+set autoread            " Reload file if changed
+nnoremap <Leader>r :checktime<CR>
+" Auto reload vimrc
+augroup vimrc
+  autocmd! BufWritePost .vimrc,vimrc,init.vim,$MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+augroup END
 
 " Move to beginning/end of line
 nnoremap BB ^
@@ -256,8 +273,8 @@ nnoremap <c-l> <c-w>l
 " nnoremap gV `[v`]
 nnoremap <expr> gV '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Remove highlight with Leader + CR
-nmap <Leader><CR> :nohlsearch<CR>
+" Remove highlight with Leader + h
+nmap <Leader>h :nohlsearch<CR>
 
 " Duplicate lines
 vmap D y'>p
@@ -336,6 +353,19 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_filetype_blacklist = {
+  \ 'notes':     1,
+  \ 'netrw':     1,
+  \ 'unite':     1,
+  \ 'tagbar':    1,
+  \ 'pandoc':    1,
+  \ 'mail':      1,
+  \ 'vimwiki':   1,
+  \ 'text':      1,
+  \ 'infolog':   1,
+  \ 'qf':        1
+  \}
+  " \ 'markdown':  1,
 
 " Default is YCM
 let g:SuperTabDefaultCompletionType = '<C-n>'
