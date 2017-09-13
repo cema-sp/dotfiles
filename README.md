@@ -17,9 +17,9 @@
 6. Install neovim packages:
 
   ~~~
-  pip install --upgrade pip
-  pip install --upgrade pip3
-  pip install --upgrade neovim
+  pip2 install --upgrade pip
+  pip3 install --upgrade pip
+  pip2 install --upgrade neovim
   pip3 install --upgrade neovim
   gem install neovim
   ~~~
@@ -42,7 +42,7 @@
 
 8. Install vim plugins: `vim +PlugInstall`
 9. Check Neovim health: `vim +CheckHealth`
-10. Make Sublime plugins work:
+10. ~Make Sublime plugins work:~
 
   1. Get your GitHub OAuth token [here](https://github.com/settings/tokens)
     and add following line to *~/Library/Application Support/Sublime Text 3/Packages/User/MarkdownPreview.sublime-settings*:
