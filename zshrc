@@ -65,6 +65,7 @@ PATH=$PATH:"$HOME/.gitbins"
 PATH=$PATH:"$HOME/.cabal/bin"
 PATH=$PATH:"$HOME/.cargo/bin"
 PATH=$PATH:"$HOME/.local/bin" # for haskell binaries
+PATH=$PATH:"/usr/local/opt/protobuf@2.6/bin" # protobuf@2.6
 export PATH
 
 # From laptop config script:
@@ -102,6 +103,12 @@ else
   export EDITOR='nvim'
 fi
 
+# Readline
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# AWS
+export AWS_PROFILE=stack
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -121,8 +128,7 @@ eval "$(direnv hook zsh)"
 eval "$(hub alias -s)"
 
 # Initialize fzf fuzzy search
-export FZF_DEFAULT_COMMAND='ag -g "" --hidden --ignore .git'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-

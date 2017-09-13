@@ -1,17 +1,31 @@
 [alias]
 	lg = log --graph --pretty=custom --abbrev-commit --date=relative
   rewrite = rewrite-history
+  co = checkout
+  resquash = pull --rebase=interactive
+[color]
+	diff = auto
 [core]
 	editor = nvim
-[help]
-	autocorrect = 1
+[diff]
+	tool = vimdiff
+	conflictstyle = diff3
+[difftool]
+	prompt = false
 [github]
   user = cema-sp
+[help]
+	autocorrect = 1
 [interactive]
-	diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFX
+	diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFXS
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
 [pager]
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
-	show = diff-so-fancy | less --tabs=1,5 -RFX
+	diff = diff-so-fancy | less --tabs=1,5 -RFXS
+	show = diff-so-fancy | less --tabs=1,5 -RFXS
 [pretty]
   custom = "%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
   #               |                    |         |          |                   \_ author name
@@ -24,21 +38,10 @@
   followTags = true
 [status]
 	submoduleSummary = true
+[url "git@github.com:"]
+  insteadof = github:
 [user]
 	name = Semyon Pisarev
 	email = cema.rus@gmail.com
-
-[diff]
-	tool = vimdiff
-	conflictstyle = diff3
-[merge]
-	tool = vimdiff
-	conflictstyle = diff3
-[mergetool]
-	prompt = false
-[difftool]
-	prompt = false
 [web]
 	browser = open
-[color]
-	diff = auto

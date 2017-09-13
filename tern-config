@@ -1,11 +1,16 @@
 {
   "plugins": {
     "node": {},
-    "es_modules": {}
+    "node_resolve": {},
+    "es_modules": {},
+    "modules": {},
+    "commonjs": {},
+    "complete_strings": {}
   },
   "libs": [
     "ecma5",
-    "ecma6"
+    "ecma6",
+    "browser"
   ],
   "ecmaVersion": 6
 }

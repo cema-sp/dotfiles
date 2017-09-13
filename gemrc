@@ -1,5 +1,7 @@
 ---
-:verbose: true
-:update_sources: true
-gem: --no-ri --no-rdoc --no-document
-
+:verbose:         true
+:update_sources:  true
+gem:              --no-ri --no-rdoc --no-document
+install:          --no-ri --no-rdoc --no-document
+update:           --no-ri --no-rdoc --no-document
+/* :ssl_verify_mode: 0 */

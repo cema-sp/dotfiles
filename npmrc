@@ -1,1 +1,3 @@
 progress=false
+strict-ssl=false
+ca=

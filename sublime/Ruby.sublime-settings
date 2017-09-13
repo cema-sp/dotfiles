@@ -1,13 +1,13 @@
 {
 	"extensions":
 	[
-		"rake",
-		"simplecov",
+		"rb",
 		"podspec",
 		"jbuilder",
 		"rabl",
-		".gitignore",
+		"rake",
 		"thor",
-		"rb"
+		"simplecov",
+		".gitignore"
 	]
 }

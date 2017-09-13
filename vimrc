@@ -6,22 +6,27 @@ if &compatible
 endif
 
 " Clipboard
-set clipboard=unnamed
+set clipboard^=unnamed
 if has("unnamedplus")
-  set clipboard+=unnamedplus
+  set clipboard^=unnamedplus
   " To copy with cmd+c in vim:
   " set clipboard+=autoselect
 end
+
+" Clear autocmds
+augroup vimrc
+  autocmd!
+augroup END
 
 set pastetoggle=<F2>
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Solarized colorscheme
+" Colorschemes
 " Plugin 'altercation/vim-colors-solarized'
-
-" Monokai colorscheme
 Plug 'crusoexia/vim-monokai'
+" Plug 'dracula/vim'
+" Plug 'junegunn/seoul256.vim'
 
 " Nerd Tree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -51,6 +56,7 @@ Plug 'scrooloose/syntastic'
 
 " Guides
 Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'Yggdroot/indentLine'  " slows down vim
 
 " Git & Gist
 Plug 'tpope/vim-fugitive'
@@ -62,11 +68,26 @@ Plug 'terryma/vim-multiple-cursors'
 " Smooth motion
 Plug 'yuttie/comfortable-motion.vim'
 
+" Pairs mappings
+Plug 'tpope/vim-unimpaired'
+
 " Surround
 Plug 'tpope/vim-surround'
 
+" Text objects
+Plug 'wellle/targets.vim'
+
+" Expand regions
+Plug 'terryma/vim-expand-region'
+
 " Motions
 Plug 'easymotion/vim-easymotion'
+
+" Joins and Splits
+Plug 'AndrewRadev/splitjoin.vim'
+
+" Substitution & Coercion
+Plug 'tpope/vim-abolish'
 
 " Markdown
 " Plug 'plasticboy/vim-markdown'
@@ -90,7 +111,8 @@ Plug 'mattn/emmet-vim'
 " JavaScript
 " Plug 'pangloss/vim-javascript'
 Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
@@ -117,14 +139,19 @@ call plug#end()
 " See: http://dougblack.io/words/a-good-vimrc.html
 
 " Colors
+" set termguicolors " enable truecolor
 " syntax enable " do not override theme colors
 syntax on     " override theme colors
 colorscheme monokai
 set t_Co=256
+set background=light
 let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+
+" For seoul256
+" let g:seoul256_background = 235
 
 " For molokai theme
-" set background=dark
 " let g:rehash256 = 1
 " let g:molokai_original = 1
 
@@ -145,14 +172,15 @@ set relativenumber
 set showcmd
 
 if !&scrolloff
-  set scrolloff=2
+  set scrolloff=5
 endif
 if !&sidescrolloff
-  set sidescrolloff=5
+  set sidescrolloff=8
 endif
 
 setlocal linebreak
-set colorcolumn=80        " show lines limit
+set textwidth=78
+set colorcolumn=+3        " show lines limit (78 + 3)
 set cursorline            " highlight current line
 filetype plugin indent on " load filetype-specific indent files
 set autoindent
@@ -160,6 +188,10 @@ set smartindent
 set cindent
 set wildmenu            " visual autocomplete for command menu
 set showmatch           " highlight matching [{()}]
+set synmaxcol=512       " don't syntax highlight long lines
+
+set noshowcmd           " don't show command
+set noshowmode          " don't show mode
 
 " Searching
 set incsearch           " search as characters are entered
@@ -179,6 +211,10 @@ set foldmethod=syntax
 " Misc
 set lazyredraw          " Improve performance
 set hidden              " allow to swith unsaved buffers
+set ttimeout
+set ttimeoutlen=100
+set fileformats+=mac
+set nojoinspaces
 
 " set formatoptions-=o    " do not insert comment on 'o' & 'O'
 " set formatoptions+=w    " space on end indicates paragraph break
@@ -205,16 +241,25 @@ highlight SpellRare cterm=underline
 
 highlight ColorColumn ctermbg=235
 
+" highlight Search cterm=underline,bold ctermfg=227 ctermbg=239 gui=underline,bold guifg=#FFFF5F guibg=#4E4E4E
+highlight Search cterm=underline,bold ctermfg=NONE ctermbg=239 gui=underline,bold guifg=NONE guibg=#4E4E4E
+
 " Stop the cross hair ruining highlighting.
-" highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
-" highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=3a3a3a guifg=NONE
+highlight CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3A3A3A guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=#3A3A3A guifg=NONE
 
 " Make conceal look better.
-highlight Conceal cterm=bold ctermbg=NONE ctermfg=67
+highlight Conceal cterm=bold ctermbg=NONE ctermfg=237 guibg=NONE guifg=#3A3A3A
 
 " Configure Indent Guides highlighting
-highlight IndentGuidesOdd cterm=NONE ctermbg=234 ctermfg=NONE guibg=bg guifg=NONE
-highlight IndentGuidesEven cterm=NONE ctermbg=235 ctermfg=NONE guibg=293739 guifg=NONE
+highlight IndentGuidesOdd cterm=NONE ctermbg=235 ctermfg=NONE guibg=#262626 guifg=NONE
+highlight IndentGuidesEven cterm=NONE ctermbg=235 ctermfg=NONE guibg=#262626 guifg=NONE
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+
+" let g:indentLine_setColors = 0
+" let g:indentLine_color_term = 237 " see Conceal
+" map <Leader>ig :IndentLinesToggle<CR>
 
 " Keys
 let g:mapleader = "\<Space>"
@@ -239,8 +284,10 @@ nnoremap k gk
 
 " Faster split resizing (+,-)
 if bufwinnr(1)
-  nmap + <C-W>+
+  nmap = <C-W>+
   nmap - <C-W>-
+  nmap _ <C-W><
+  nmap + <C-W>>
 endif
 
 " Sudo write (,W)
@@ -249,15 +296,19 @@ nnoremap <Leader>W :w !sudo tee %<CR>
 
 " Refresh
 set autoread            " Reload file if changed
-nnoremap <Leader>r :checktime<CR>
+" nnoremap <Leader>r :checktime<CR>
 " Auto reload vimrc
-augroup vimrc
-  autocmd! BufWritePost .vimrc,vimrc,init.vim,$MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-augroup END
+" augroup vimrc
+"   autocmd! BufWritePost .vimrc,vimrc,init.vim,$MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+" augroup END
 
-" Move to beginning/end of line
-nnoremap BB ^
-nnoremap EE $
+" Move to beginning/end of line/file
+nmap BB ^
+nmap EE $
+vmap BB ^
+vmap EE g_
+nnoremap <CR> G
+nnoremap <BS> gg
 
 " $/^ doesn't do anything
 " nnoremap $ <nop>
@@ -285,12 +336,28 @@ inoremap jj <ESC>
 inoremap kk <ESC>
 inoremap jk <ESC>
 
-" Close buffer with Q
-nnoremap Q :bd<CR>
+" Close buffer with Q and open prev
+nnoremap Q :bp <BAR> bd #<CR>
 " nnoremap <C-q> :bd<CR>
 
 " Invoke fzf with Ctrl+P
-nnoremap <C-p> :Files<CR>
+nmap <silent> <C-p> :Files<CR>
+nmap <silent> <C-b> :Buffers<CR>
+nnoremap <C-a> :Ag<CR>
+vnoremap <C-a> y :Ag <C-R>"<CR>
+
+" Terminal
+" tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+inoremap <C-h> <C-\><C-N><C-w>h
+inoremap <C-j> <C-\><C-N><C-w>j
+inoremap <C-k> <C-\><C-N><C-w>k
+inoremap <C-l> <C-\><C-N><C-w>l
+
+set path+=$PWD
 
 set keymap=russian-jcukenwin
 set iminsert=0
@@ -304,16 +371,22 @@ set mouse=nvc
 
 " Nice autocomplete menus
 set completeopt=menuone,menu,longest
-set wildignore+=*.swp,*.swo,*.zip,.git,.cabal-sandbox
 set wildmode=longest,list,full
 set wildmenu
 set completeopt+=longest
+set wildignore+=*.swp,*.swo,*.zip,.git,.cabal-sandbox
 
 " Use XDG directories (don't forget to create them)
 set directory=$XDG_CACHE_HOME/vim/swap,~/tmp,/tmp
 set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
 " set shada+=n$XDG_CACHE_HOME/vim/viminfo
 set undodir=$XDG_CACHE_HOME/vim/undo,~/tmp,/tmp
+
+augroup filetype_detect
+  autocmd!
+  autocmd BufRead,BufNewFile *.arb set filetype=ruby | set syntax=ruby
+  autocmd BufRead,BufNewFile schema.rb set filetype=ruby | set syntax=off
+augroup END
 
 " ---------------- Custom commands  --------------------------
 
@@ -325,6 +398,11 @@ if !exists(':FilePathAbs')
   command FilePathAbs :let @+ = expand("%:p")
 endif
 
+" ---------------- Neovim tuning -----------------------------
+
+let g:python_host_prog="/usr/local/bin/python"
+let g:python3_host_prog="/usr/local/bin/python3"
+
 " ---------------- Plugins configuration ---------------------
 
 " NERDTree
@@ -334,16 +412,32 @@ map <Leader>t :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.tags$', 'tags$', 'tags.lock$', '\.jar$', '^\.bzr$', '^\.hg$', '^\.git$', '\.swp$', '^\.svn', '^\.DS_Store$']
 let NERDTreeShowHidden = 1
 
+" Expand regions
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Comfortable motion
+let g:comfortable_motion_no_default_key_mappings = 1
+nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+
 " Easymotion
-map <C-s> <Plug>(easymotion-prefix)
+" map <C-s> <Plug>(easymotion-prefix)
+map <Leader><Leader> <Plug>(easymotion-prefix)
+
+" Search forward
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " line movements
-map <C-s>l <Plug>(easymotion-bd-jk)
-nmap <C-s>l <Plug>(easymotion-overwin-line)
+map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
 
 " word movements
-map <C-s>/ <Plug>(easymotion-sn)
-omap <C-s>/ <Plug>(easymotion-tn)
+map <Leader>/ <Plug>(easymotion-sn)
+omap <Leader>/ <Plug>(easymotion-tn)
+
+let g:EasyMotion_smartcase = 1
 
 " Snippets & Completions
 let g:ycm_dont_warn_on_startup = 0
@@ -396,7 +490,6 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 " Lightline config
-set noshowmode
 set showtabline=2
 
 let g:lightline = {
@@ -431,13 +524,14 @@ let g:lightline_buffer_active_buffer_right_icon = ''
 
 " Ack & Ag search
 if executable('ag')
-  let g:ackprg = 'ag --nogroup --nocolor --column'
+  " let g:ackprg = 'ag --nogroup --nocolor --column'
+  let g:ackprg = 'ag --nogroup --column --hidden --ignore .git'
 endif
 
 " Whitespaces
 " autocmd BufWritePre * if index(['md'], &ft) < 0 | StripWhitespace
 " autocmd FileType javascript,html,ruby autocmd BufWritePre <buffer> StripWhitespace
-autocmd BufWritePre *.rb,*.js,*.jsx,*.html,*.css,*.sass StripWhitespace
+autocmd BufWritePre *.rb,*.js,*.jsx,*.html,*.css,*.sass,*.coffee,*.cjsx StripWhitespace
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help','markdown']
 
 " Emmet
@@ -485,10 +579,12 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { "mode": "passive" }
 
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 " JavaScript
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
+let g:vim_jsx_pretty_colorful_config = 1
 
 " Flow
 let g:flow#autoclose = 1
@@ -499,3 +595,6 @@ map <silent> ts :GhcModSplitFunCase<CR>
 map <silent> tq :GhcModType<CR>
 map <silent> te :GhcModTypeClear<CR>
 
+" Enable project-specific .vimrc with only secure commands
+set exrc
+set secure

@@ -10,6 +10,9 @@ alias diskspace='df -P -kHl'
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias vim='nvim'
 
+# Git
+alias gcl='git checkout . && git clean -f'
+
 # File Download
 if (( $+commands[curl] )); then
   alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
