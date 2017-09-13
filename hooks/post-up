@@ -3,14 +3,14 @@
 function link {
   from=$1
   to=$2
-  echo "Linking '$from' to '$to'..."
+  echo "Linking '$to' to '$from'..."
   if [ -e "$to" ]; then
-    echo -e "\tFile $to already exists!"
+    echo "\tFile $to already exists!"
   elif [ -L "$to" ]; then
-    echo -e "\tLink $to already exists!"
+    echo "\tLink $to already exists!"
   else
-    ln -s $from $dest && echo -e "\tDone!"
-    # echo "ln -s $from $dest"
+    echo "ln -s \"$from\" \"$to\""
+    ln -s "$from" "$to" && echo "\tDone!"
   fi
 }
 
