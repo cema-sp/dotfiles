@@ -28,6 +28,9 @@ Plug 'crusoexia/vim-monokai'
 " Plug 'dracula/vim'
 " Plug 'junegunn/seoul256.vim'
 
+" EditorConfig
+Plug 'sgur/vim-editorconfig'
+
 " Nerd Tree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
@@ -60,6 +63,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " Git & Gist
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " Multiple cursors
