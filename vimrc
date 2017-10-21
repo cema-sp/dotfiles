@@ -55,7 +55,7 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " Syntax checker
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 
 " Guides
 Plug 'nathanaelkane/vim-indent-guides'
@@ -261,6 +261,9 @@ highlight IndentGuidesEven cterm=NONE ctermbg=235 ctermfg=NONE guibg=#262626 gui
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 
+highlight ALEErrorSign cterm=NONE ctermbg=235 ctermfg=161 guibg=#262626 guifg=#d7005f
+highlight ALEWarningSign cterm=NONE ctermbg=235 ctermfg=166 guibg=#262626 guifg=#d75f00
+
 " let g:indentLine_setColors = 0
 " let g:indentLine_color_term = 237 " see Conceal
 " map <Leader>ig :IndentLinesToggle<CR>
@@ -386,10 +389,11 @@ set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
 " set shada+=n$XDG_CACHE_HOME/vim/viminfo
 set undodir=$XDG_CACHE_HOME/vim/undo,~/tmp,/tmp
 
-augroup filetype_detect
+augroup FiletypeDetect
   autocmd!
   autocmd BufRead,BufNewFile *.arb set filetype=ruby | set syntax=ruby
   autocmd BufRead,BufNewFile schema.rb set filetype=ruby | set syntax=off
+  " autocmd BufRead,BufNewFile *.jsx set filetype=jsx
 augroup END
 
 " ---------------- Custom commands  --------------------------
@@ -498,8 +502,14 @@ set showtabline=2
 
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'right': [ [ 'mode', 'paste' ],
+      \              [ 'readonly', 'filename', 'modified' ],
+      \              [ 'linter_warnings', 'linter_errors', 'linter_ok' ] ],
+      \ },
       \ 'tabline': {
-      \   'left': [ [ 'bufferinfo' ], [ 'bufferbefore' , 'buffercurrent' , 'bufferafter' ] ],
+      \   'left': [ [ 'bufferinfo' ],
+      \             [ 'bufferbefore' , 'buffercurrent' , 'bufferafter' ] ],
       \   'right': [ [ 'close' ] ],
       \ },
       \ 'tab': {
@@ -512,12 +522,19 @@ let g:lightline = {
       \   'buffercurrent': 'lightline#buffer#buffercurrent2',
       \ },
       \ 'component_function': {
-      \   'bufferbefore': 'lightline#buffer#bufferbefore',
-      \   'bufferafter': 'lightline#buffer#bufferafter',
-      \   'bufferinfo': 'lightline#buffer#bufferinfo',
+      \   'bufferbefore':     'lightline#buffer#bufferbefore',
+      \   'bufferafter':      'lightline#buffer#bufferafter',
+      \   'bufferinfo':       'lightline#buffer#bufferinfo',
+      \   'linter_warnings':  'LightlineLinterWarnings',
+      \   'linter_errors':    'LightlineLinterErrors',
+      \   'linter_ok':        'LightlineLinterOK',
       \ },
       \ 'component_type': {
-      \   'buffercurrent': 'tabsel',
+      \   'readonly':         'error',
+      \   'buffercurrent':    'tabsel',
+      \   'linter_warnings':  'warning',
+      \   'linter_errors':    'error',
+      \   'linter_ok':        'ok',
       \ },
       \ }
 
@@ -567,23 +584,41 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Syntastic
-map <Leader>s :SyntasticToggleMode<CR>
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" ALE
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_enter = 0
+" let g:ale_linters = { 'jsx': ['stylelint', 'eslint'] }
+" let g:ale_linter_aliases = { 'jsx': 'css' }
+" let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 0
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '◆'
 
-let g:syntastic_mode_map = { "mode": "passive" }
+" ALE + Lightline
 
-let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓' : ''
+endfunction
+
+autocmd User ALELint call lightline#update()
 
 " JavaScript
 let g:javascript_plugin_flow = 1
