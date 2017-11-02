@@ -51,6 +51,9 @@ Plug 'mileszs/ack.vim'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
+" Tmux
+Plug 'christoomey/vim-tmux-navigator'
+
 " Comments
 Plug 'scrooloose/nerdcommenter'
 
@@ -116,7 +119,8 @@ Plug 'mattn/emmet-vim'
 " Plug 'pangloss/vim-javascript'
 Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript.jsx' }
+" Plug 'neoclide/vim-jsx-improve', { 'for': 'javascript.jsx' }
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
@@ -143,6 +147,9 @@ call plug#end()
 " See: http://dougblack.io/words/a-good-vimrc.html
 
 " Colors
+if exists('$TMUX')
+  set term=screen-256color
+endif
 " set termguicolors " enable truecolor
 " syntax enable " do not override theme colors
 syntax on     " override theme colors
@@ -220,7 +227,7 @@ set ttimeoutlen=100
 set fileformats+=mac
 set nojoinspaces
 
-" set formatoptions-=o    " do not insert comment on 'o' & 'O'
+set formatoptions-=o    " do not insert comment on 'o' & 'O'
 " set formatoptions+=w    " space on end indicates paragraph break
 " set formatoptions+=2    " indent as second line
 augroup format_options
@@ -238,10 +245,10 @@ highlight clear SpellCap
 highlight clear SpellLocal
 highlight clear SpellRare
 
-highlight SpellBad cterm=underline
-highlight SpellCap cterm=underline
-highlight SpellLocal cterm=underline
-highlight SpellRare cterm=underline
+highlight SpellBad cterm=underline gui=underline
+highlight SpellCap cterm=underline gui=underline
+highlight SpellLocal cterm=underline gui=underline
+highlight SpellRare cterm=underline gui=underline
 
 highlight ColorColumn ctermbg=235
 
@@ -261,6 +268,8 @@ highlight IndentGuidesEven cterm=NONE ctermbg=235 ctermfg=NONE guibg=#262626 gui
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 
+highlight ALEError cterm=NONE gui=NONE
+highlight ALEWarning cterm=NONE gui=NONE
 highlight ALEErrorSign cterm=NONE ctermbg=235 ctermfg=161 guibg=#262626 guifg=#d7005f
 highlight ALEWarningSign cterm=NONE ctermbg=235 ctermfg=166 guibg=#262626 guifg=#d75f00
 
@@ -301,13 +310,9 @@ endif
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>W :w !sudo tee %<CR>
 
-" Refresh
-set autoread            " Reload file if changed
+" Reload file if changed
+set autoread
 " nnoremap <Leader>r :checktime<CR>
-" Auto reload vimrc
-" augroup vimrc
-"   autocmd! BufWritePost .vimrc,vimrc,init.vim,$MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-" augroup END
 
 " Move to beginning/end of line/file
 nmap BB ^
@@ -326,6 +331,8 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+nnoremap <Leader>q :cclose<CR>:lclose<CR>
 
 " Highlight last inserted text
 " nnoremap gV `[v`]
@@ -585,8 +592,9 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " ALE
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_enter = 0
+" 'always' | 'normal' | 'never'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
 " let g:ale_linters = { 'jsx': ['stylelint', 'eslint'] }
 " let g:ale_linter_aliases = { 'jsx': 'css' }
 " let g:ale_set_loclist = 1
@@ -620,9 +628,13 @@ endfunction
 
 autocmd User ALELint call lightline#update()
 
+" Vim-Polyglot
+let g:polyglot_disabled = ['jsx', 'javascript.jsx']
+
 " JavaScript
 let g:javascript_plugin_flow = 1
-let g:jsx_ext_required = 0
+" let g:jsx_ext_required = 0
+let g:vim_jsx_pretty_enable_jsx_highlight	= 1
 let g:vim_jsx_pretty_colorful_config = 1
 
 " Flow
