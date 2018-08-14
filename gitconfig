@@ -17,7 +17,9 @@
 [help]
 	autocorrect = 1
 [interactive]
-	diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFXS
+  ; https://github.com/so-fancy/diff-so-fancy/issues/296
+  ; https://github.com/so-fancy/diff-so-fancy/issues/35
+	; diffFilter = diff-so-fancy --patch-mode | less --tabs=4 -RFXS
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3

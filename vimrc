@@ -51,8 +51,9 @@ Plug 'mileszs/ack.vim'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
-" Tmux
-Plug 'christoomey/vim-tmux-navigator'
+" Jobs & Tasks runner
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 
 " Comments
 Plug 'scrooloose/nerdcommenter'
@@ -67,10 +68,11 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Git & Gist
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'junegunn/gv.vim'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+" DB browser
+Plug 'tpope/vim-db'
 
 " Smooth motion
 Plug 'yuttie/comfortable-motion.vim'
@@ -78,14 +80,11 @@ Plug 'yuttie/comfortable-motion.vim'
 " Pairs mappings
 Plug 'tpope/vim-unimpaired'
 
-" Surround
+" Surround with brackets
 Plug 'tpope/vim-surround'
 
 " Text objects
 Plug 'wellle/targets.vim'
-
-" Expand regions
-Plug 'terryma/vim-expand-region'
 
 " Motions
 Plug 'easymotion/vim-easymotion'
@@ -99,6 +98,9 @@ Plug 'tpope/vim-abolish'
 " Markdown
 " Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
+
+" Graphviz (DOT)
+" Plug 'wannesm/wmgraphviz.vim'
 
 " Execution
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -265,13 +267,15 @@ highlight Conceal cterm=bold ctermbg=NONE ctermfg=237 guibg=NONE guifg=#3A3A3A
 " Configure Indent Guides highlighting
 highlight IndentGuidesOdd cterm=NONE ctermbg=235 ctermfg=NONE guibg=#262626 guifg=NONE
 highlight IndentGuidesEven cterm=NONE ctermbg=235 ctermfg=NONE guibg=#262626 guifg=NONE
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
 
 highlight ALEError cterm=NONE gui=NONE
 highlight ALEWarning cterm=NONE gui=NONE
 highlight ALEErrorSign cterm=NONE ctermbg=235 ctermfg=161 guibg=#262626 guifg=#d7005f
 highlight ALEWarningSign cterm=NONE ctermbg=235 ctermfg=166 guibg=#262626 guifg=#d75f00
+
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+let g:indent_guides_enable_on_vim_startup=1
 
 " let g:indentLine_setColors = 0
 " let g:indentLine_color_term = 237 " see Conceal
@@ -396,6 +400,11 @@ set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
 " set shada+=n$XDG_CACHE_HOME/vim/viminfo
 set undodir=$XDG_CACHE_HOME/vim/undo,~/tmp,/tmp
 
+" augroup TerminalInsert
+"   autocmd!
+"   autocmd BufEnter term://* startinsert
+" augroup END
+
 augroup FiletypeDetect
   autocmd!
   autocmd BufRead,BufNewFile *.arb set filetype=ruby | set syntax=ruby
@@ -480,7 +489,7 @@ let g:ycm_filetype_blacklist = {
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " UltiSnips
-let g:UltiSnipsSnippetsDir='~/.vim/snippets'
+let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
 let g:UltiSnipsEditSplit='vertical'
 let g:UltiSnipsExpandTrigger = "<c-space>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
@@ -511,11 +520,12 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'right': [ [ 'mode', 'paste' ],
-      \              [ 'readonly', 'filename', 'modified' ],
+      \              [ 'readonly', 'modified' ],
       \              [ 'linter_warnings', 'linter_errors', 'linter_ok' ] ],
       \ },
       \ 'tabline': {
       \   'left': [ [ 'bufferinfo' ],
+      \             [ 'separator' ],
       \             [ 'bufferbefore' , 'buffercurrent' , 'bufferafter' ] ],
       \   'right': [ [ 'close' ] ],
       \ },
@@ -527,10 +537,10 @@ let g:lightline = {
       \ 'tabline_subseparator': { 'left': '-', 'right': '+' },
       \ 'component_expand': {
       \   'buffercurrent': 'lightline#buffer#buffercurrent2',
-      \ },
-      \ 'component_function': {
       \   'bufferbefore':     'lightline#buffer#bufferbefore',
       \   'bufferafter':      'lightline#buffer#bufferafter',
+      \ },
+      \ 'component_function': {
       \   'bufferinfo':       'lightline#buffer#bufferinfo',
       \   'linter_warnings':  'LightlineLinterWarnings',
       \   'linter_errors':    'LightlineLinterErrors',
@@ -539,9 +549,14 @@ let g:lightline = {
       \ 'component_type': {
       \   'readonly':         'error',
       \   'buffercurrent':    'tabsel',
+      \   'bufferbefore':     'raw',
+      \   'bufferafter':      'raw',
       \   'linter_warnings':  'warning',
       \   'linter_errors':    'error',
       \   'linter_ok':        'ok',
+      \ },
+      \ 'component': {
+      \   'separator': '',
       \ },
       \ }
 
@@ -565,7 +580,7 @@ let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf',
 " Emmet
 let g:user_emmet_mode = 'in'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,eruby EmmetInstall
+autocmd FileType html,css,eruby,javascript.jsx EmmetInstall
 
 " Tabular
 let g:haskell_tabular = 1
@@ -602,6 +617,8 @@ let g:ale_lint_on_enter = 0
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '◆'
+
+let g:ale_ruby_rubocop_options = '-c .rubocop.yml'
 
 " ALE + Lightline
 
@@ -645,6 +662,36 @@ map <silent> tw :GhcModTypeInsert<CR>
 map <silent> ts :GhcModSplitFunCase<CR>
 map <silent> tq :GhcModType<CR>
 map <silent> te :GhcModTypeClear<CR>
+
+" GitHub Pull Request support via :Gpr and :GPR
+
+function! GithubPrUrl(opts, ...) abort
+  let opts = a:opts
+
+  if opts.path !=# '!PR'
+    return ''
+  endif
+
+  let opts.path = ''
+  let opts.type = 'tree'
+
+  let url = rhubarb#fugitive_url(opts)
+  return substitute(url, 'tree', 'compare', '') . '?expand=1'
+endfunction
+
+function! InstallGithubPrUrl() abort
+  if index(g:fugitive_browse_handlers, function('GithubPrUrl')) < 0
+    call insert(g:fugitive_browse_handlers, function('GithubPrUrl'))
+
+    command Gpr execute 'Gbrowse !PR'
+    command GPR execute 'Gpr'
+  endif
+endfunction
+
+augroup fugitiveGithubPR
+  autocmd!
+  autocmd User Fugitive call InstallGithubPrUrl()
+augroup END
 
 " Enable project-specific .vimrc with only secure commands
 set exrc
