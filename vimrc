@@ -157,7 +157,7 @@ endif
 syntax on     " override theme colors
 colorscheme monokai
 set t_Co=256
-set background=light
+set background=dark
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 
@@ -241,6 +241,9 @@ set history=500
 set noerrorbells
 
 " Highlighting
+" Fix vim-monokai issue: https://github.com/sickill/vim-monokai/issues/36
+" highlight Normal ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE
+
 " Make spelling problems easier to read.
 highlight clear SpellBad
 highlight clear SpellCap

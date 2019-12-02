@@ -52,4 +52,3 @@
 [laptop script]: https://github.com/cema-sp/laptop "laptop script"
 [rcm]: https://github.com/thoughtbot/rcm "RCM"
 [vim-plug]: https://github.com/junegunn/vim-plug "vim-plug"
-

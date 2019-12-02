@@ -10,7 +10,7 @@ function deploy {
   elif [ -L "$dest" ]; then
     echo -e "\tLink $dest already exists!"
   else
-    ln -s ~/dotfiles/$from $dest && echo -e "\tDone!"
+    ln -s "$HOME/dotfiles/$from" "$dest" && echo -e "\tDone!"
   fi
 }
 
@@ -24,4 +24,3 @@ deploy gemrc ~
 deploy cema-sp.zsh-theme ~/.oh-my-zsh/themes
 
 echo -e "\n\t Done! \n"
-
