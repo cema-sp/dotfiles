@@ -44,7 +44,7 @@ Plug 'honza/vim-snippets'
 
 " Status bar
 Plug 'itchyny/lightline.vim'
-Plug 'taohex/lightline-buffer'
+Plug 'taohexxx/lightline-buffer'
 
 " Fuzzy files search
 Plug 'mileszs/ack.vim'
@@ -96,11 +96,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-abolish'
 
 " Markdown
-" Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
-
-" Graphviz (DOT)
-" Plug 'wannesm/wmgraphviz.vim'
 
 " Execution
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -118,11 +114,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 
 " JavaScript
-" Plug 'pangloss/vim-javascript'
-Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript.jsx' }
 " Plug 'neoclide/vim-jsx-improve', { 'for': 'javascript.jsx' }
+
+" TypeScript
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
@@ -134,12 +131,6 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'kien/rainbow_parentheses.vim' " Awesome parantheses
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
-
-" Solidity
-" Plug 'tomlion/vim-solidity'
-
-" Elm
-" Plug 'lambdatoast/elm.vim'
 
 " Spelling
 Plug 'reedes/vim-wordy'
