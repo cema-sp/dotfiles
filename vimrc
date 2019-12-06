@@ -35,7 +35,8 @@ Plug 'sgur/vim-editorconfig'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Autocomplete & completion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+" Might need: pip3 install requests
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer --ts-completer --java-completer' }
 Plug 'ervandew/supertab'
 
 " Snippets
@@ -114,9 +115,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 
 " JavaScript
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript.jsx' }
-" Plug 'neoclide/vim-jsx-improve', { 'for': 'javascript.jsx' }
+" Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript.jsx' }
 
 " TypeScript
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
@@ -640,7 +639,7 @@ endfunction
 autocmd User ALELint call lightline#update()
 
 " Vim-Polyglot
-let g:polyglot_disabled = ['jsx', 'javascript.jsx']
+" let g:polyglot_disabled = ['jsx', 'javascript.jsx']
 
 " JavaScript
 let g:javascript_plugin_flow = 1
