@@ -1,5 +1,5 @@
 COPY_ALWAYS="ssh/id_*"
 EXCLUDES="README.md deploy.sh"
-SYMLINK_DIRS="vim sublime gitbins custom"
-UNDOTTED="BitBar iTerm custom insomnia.json"
+SYMLINK_DIRS="vim sublime gitbins"
+UNDOTTED="BitBar iTerm insomnia.json"
 

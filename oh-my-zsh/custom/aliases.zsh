@@ -19,3 +19,6 @@ if (( $+commands[curl] )); then
 elif (( $+commands[wget] )); then
   alias get='wget --continue --progress=bar --timestamping'
 fi
+
+# Edlio specific
+alias jdks='/usr/libexec/java_home -V'

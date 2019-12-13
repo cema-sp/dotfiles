@@ -12,26 +12,26 @@
 	<true/>
 	<key>Coprocess MRU</key>
 	<array>
-		<string>echo vim /Users/cema-sp/projects/laptop/README.md +</string>
-		<string>echo vim /Users/cema-sp/work/dredd/deploy/deploy.yml +</string>
-		<string>echo vim /Users/cema-sp/work/dredd/config/routes.rb +126</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/workers/documents/suspects_parser_worker.rb +14</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/processors/documents/suspects_processor.rb +5</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/parsers/documents/suspects_parser.rb +42</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/workers/documents/suspects_parser_worker.rb +40</string>
-		<string>echo vim /Users/cema-sp/work/dredd/spec/workers/records/creator_spec.rb +105</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/workers/documents/parser.rb +14</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/parsers/documents/base_parser.rb +53</string>
-		<string>echo vim /Users/cema-sp/work/felix/app/admin/lead.rb +</string>
-		<string>echo vim /Users/cema-sp/work/dredd/spec/operations/lists/activate_spec.rb +88</string>
-		<string>echo vim /Users/cema-sp/work/dredd/spec/operations/records/search_operation_spec.rb +113</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/operations/records/search_operation.rb +16</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/processors/documents/base_processor.rb +19</string>
+		<string>echo vim /Users/semyon/projects/laptop/README.md +</string>
+		<string>echo vim /Users/semyon/work/dredd/deploy/deploy.yml +</string>
+		<string>echo vim /Users/semyon/work/dredd/config/routes.rb +126</string>
+		<string>echo vim /Users/semyon/work/dredd/app/workers/documents/suspects_parser_worker.rb +14</string>
+		<string>echo vim /Users/semyon/work/dredd/app/processors/documents/suspects_processor.rb +5</string>
+		<string>echo vim /Users/semyon/work/dredd/app/parsers/documents/suspects_parser.rb +42</string>
+		<string>echo vim /Users/semyon/work/dredd/app/workers/documents/suspects_parser_worker.rb +40</string>
+		<string>echo vim /Users/semyon/work/dredd/spec/workers/records/creator_spec.rb +105</string>
+		<string>echo vim /Users/semyon/work/dredd/app/workers/documents/parser.rb +14</string>
+		<string>echo vim /Users/semyon/work/dredd/app/parsers/documents/base_parser.rb +53</string>
+		<string>echo vim /Users/semyon/work/felix/app/admin/lead.rb +</string>
+		<string>echo vim /Users/semyon/work/dredd/spec/operations/lists/activate_spec.rb +88</string>
+		<string>echo vim /Users/semyon/work/dredd/spec/operations/records/search_operation_spec.rb +113</string>
+		<string>echo vim /Users/semyon/work/dredd/app/operations/records/search_operation.rb +16</string>
+		<string>echo vim /Users/semyon/work/dredd/app/processors/documents/base_processor.rb +19</string>
 		<string>echo vim /usr/local/Cellar/unixodbc/2.3.4/etc/odbcinst.ini +</string>
-		<string>echo vim /Users/cema-sp/.odbc.ini +</string>
+		<string>echo vim /Users/semyon/.odbc.ini +</string>
 		<string>echo vim /usr/local/Cellar/unixodbc/2.3.4/etc/odbc.ini +</string>
-		<string>echo vim /Users/cema-sp/work/dredd/app/workers/lists/differ.rb +11</string>
-		<string>echo vim /Users/cema-sp/work/dredd/spec/workers/lists/differ_spec.rb +91</string>
+		<string>echo vim /Users/semyon/work/dredd/app/workers/lists/differ.rb +11</string>
+		<string>echo vim /Users/semyon/work/dredd/spec/workers/lists/differ_spec.rb +91</string>
 	</array>
 	<key>CopySelection</key>
 	<true/>
@@ -1862,7 +1862,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/cema-sp</string>
+			<string>/Users/semyon</string>
 		</dict>
 		<dict>
 			<key>ASCII Anti Aliased</key>
@@ -2646,7 +2646,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/cema-sp</string>
+			<string>/Users/semyon</string>
 		</dict>
 		<dict>
 			<key>ASCII Anti Aliased</key>
@@ -3432,7 +3432,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/cema-sp</string>
+			<string>/Users/semyon</string>
 		</dict>
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
@@ -3487,7 +3487,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/cema-sp/iTerm</string>
+	<string>/Users/semyon/iTerm</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>

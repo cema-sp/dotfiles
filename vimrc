@@ -131,6 +131,9 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'kien/rainbow_parentheses.vim' " Awesome parantheses
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
+" Freemarker (FTL)
+Plug 'andreshazard/vim-freemarker'
+
 " Spelling
 Plug 'reedes/vim-wordy'
 

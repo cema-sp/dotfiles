@@ -2,7 +2,7 @@ set b off # disable beep
 export KEYTIMEOUT=1
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/cema-sp/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -52,12 +52,10 @@ COMPLETION_WAITING_DOTS="true"
 
 # nvm
 export NVM_LAZY_LOAD=true
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(docker gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search zsh-nvm)
+plugins=(docker git gitfast gulp npm osx rbenv rake-fast thor vi-mode web-search zsh-nvm)
 
 # User configuration
 
@@ -68,13 +66,16 @@ PATH=$PATH:"$HOME/.gitbins"
 PATH=$PATH:"$HOME/.cabal/bin"
 PATH=$PATH:"$HOME/.cargo/bin"
 PATH=$PATH:"$HOME/.local/bin" # for haskell binaries
-PATH=$PATH:"/usr/local/opt/protobuf@2.6/bin" # protobuf@2.6
 export PATH
 
 # From laptop config script:
 export PATH="$HOME/.bin:$PATH"
-# recommended by brew doctor
+# Recommended by brew doctor
 export PATH="/usr/local/bin:$PATH"
+# Use GNU sed
+export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+# Link MySQL 5.7
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 export GOPATH=$HOME/go
 # export MANPATH="/usr/local/man:$MANPATH"
