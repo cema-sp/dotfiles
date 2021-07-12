@@ -23,16 +23,10 @@ set pastetoggle=<F2>
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorschemes
-" Plugin 'altercation/vim-colors-solarized'
 Plug 'crusoexia/vim-monokai'
-" Plug 'dracula/vim'
-" Plug 'junegunn/seoul256.vim'
 
-" EditorConfig
-Plug 'sgur/vim-editorconfig'
-
-" Nerd Tree
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" File explorer
+Plug 'kyazdani42/nvim-tree.lua', { 'on': 'NvimTreeToggle' }
 
 " Autocomplete & completion
 " Might need: pip3 install requests
@@ -64,7 +58,6 @@ Plug 'w0rp/ale'
 
 " Guides
 Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'Yggdroot/indentLine'  " slows down vim
 
 " Git & Gist
 Plug 'tpope/vim-fugitive'
@@ -145,21 +138,14 @@ call plug#end()
 if exists('$TMUX')
   set term=screen-256color
 endif
-" set termguicolors " enable truecolor
+set termguicolors " enable truecolor
+" set t_Co=256 " otherwise
 " syntax enable " do not override theme colors
 syntax on     " override theme colors
 colorscheme monokai
-set t_Co=256
 set background=dark
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
-
-" For seoul256
-" let g:seoul256_background = 235
-
-" For molokai theme
-" let g:rehash256 = 1
-" let g:molokai_original = 1
 
 " Encodings
 set langmenu=en_US.UTF-8
@@ -236,6 +222,9 @@ set noerrorbells
 " Highlighting
 " Fix vim-monokai issue: https://github.com/sickill/vim-monokai/issues/36
 " highlight Normal ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE
+
+" Set background color matching iTerm
+highlight Normal ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=#1C1C1C gui=NONE
 
 " Make spelling problems easier to read.
 highlight clear SpellBad
@@ -425,12 +414,21 @@ let g:python3_host_prog="/usr/local/bin/python3"
 
 " ---------------- Plugins configuration ---------------------
 
-" NERDTree
-" Autostart NERDTree
-" autocmd vimenter * NERDTree
-map <Leader>t :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$', '\.tags$', 'tags$', 'tags.lock$', '\.jar$', '^\.bzr$', '^\.hg$', '^\.git$', '\.swp$', '^\.svn', '^\.DS_Store$']
-let NERDTreeShowHidden = 1
+" nvim-tree.lua
+map <Leader>t :NvimTreeToggle<CR>
+let g:nvim_tree_ignore = ['\.pyc$', '\.tags$', 'tags$', 'tags.lock$', '\.jar$', '^\.bzr$', '^\.hg$', '^\.git$', '\.swp$', '^\.svn', '^\.DS_Store$']
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_show_icons = {
+    \ 'git': 0,
+    \ 'folders': 0,
+    \ 'files': 0,
+    \ 'folder_arrows': 0,
+    \ }
+
+" nnn
+" let g:nnn#set_default_mappings = 0
+" nnoremap <silent> <Leader>t :NnnPicker<CR>
+" let g:nnn#layout = { 'left': '~20%' }
 
 " Expand regions
 vmap v <Plug>(expand_region_expand)
@@ -459,7 +457,7 @@ omap <Leader>/ <Plug>(easymotion-tn)
 
 let g:EasyMotion_smartcase = 1
 
-" Snippets & Completions
+" YouCompleteMe: Snippets & Completions
 let g:ycm_dont_warn_on_startup = 0
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
@@ -480,6 +478,13 @@ let g:ycm_filetype_blacklist = {
   \ 'qf':        1
   \}
   " \ 'markdown':  1,
+
+let g:ycm_language_server = [
+  \   { 'name': 'kotlin',
+  \     'filetypes': [ 'kotlin' ],
+  \     'cmdline': [ expand( '/opt/kotlin-language-server/server/build/install/server/bin/kotlin-language-server' ) ],
+  \   },
+  \ ]
 
 " Default is YCM
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -582,9 +587,8 @@ autocmd FileType html,css,eruby,javascript.jsx EmmetInstall
 let g:haskell_tabular = 1
 
 " Markdown Preview
-let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_toggle=1 " Render on hotkey and display images
 let vim_markdown_preview_temp_file=1
-let vim_markdown_preview_toggle=1
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
 
@@ -613,6 +617,7 @@ let g:ale_lint_on_enter = 0
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '◆'
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 
 let g:ale_ruby_rubocop_options = '-c .rubocop.yml'
 
